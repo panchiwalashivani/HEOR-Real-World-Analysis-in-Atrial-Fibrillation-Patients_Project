@@ -1,0 +1,30 @@
+Step 1: Cohort Selection - Record Selections
+********************************************************;
+Take Index Date as 1st Prescription Date i.e. Request Date from Medication dataset.
+Study Pop: Atrial Fibrillation ICD10 Code initial 3 characters: "I48"
+-          Patients who has Atrial Fibrillation (ICD10 Code initial 3 characters: "I48")
+-          AF occurred between '1Jan2007' and '1Jan2019'
+-          Keep patient who are treated with below drugs and create cohort variable based on below.
+-          Treated with one of three treatment groups in medication datasets
+o   Cohort="NOAC" (There are 3 drugs in this cohort)
+§  APIXABAN: NDC Code in (3089421 636297747) OR medication_name contains "APIXABAN"
+§  DABIGATRAN: NDC Code in (5970108) OR medication_name contains "DABIGATRAN"
+§  RIVAROXABAN: NDC Code in (50458577) OR medication_name contains "RIVAROXABAN"
+o   Cohort =”WARFARIN”
+§  WARFARIN: NDC Code in (31722327) OR medication_name contains "WARFARIN”
+o   Cohort =”ASPIRIN”
+§  ASPIRIN: NDC Code in (31722327) OR medication_name contains "ASPIRIN”
+-          Request_Date is prescription Date
+-          Select only patient with selected drugs + Specific Timeframe Records as per SAP
+-          To Check if any patient falls in two different cohort category or not;
+-          Dont need dup records as deriving cohorts;
+-          Dataset has Cohort variable on which we would perform all analysis.
+-          Still Inclusion Criteria & Exclusion Criteria needs to be applied
+o   Inclusion Criteria:
+§  Inclusion Criteria 1: Age > 18
+§  Inclusion Criteria 2: Condition of AF (ICD10 Code initial 3 characters: "I48")
+§  Inclusion Criteria 3: Taken specific medications etc.
+§  Exclusion Criteria 1: Fracture Exclusion (
+M81 - Age-related osteoporosis without current pathological fracture &
+I97 - Postprocedural cardiac insufficiency)
+§  Exclusion Criteria 2: Fluoroscopy of Heart – Exclude (Procedure Codes: B215YZZ B2151ZZ B2151ZZ )
